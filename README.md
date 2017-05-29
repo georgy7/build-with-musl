@@ -68,3 +68,6 @@ You can browse it now (print `exit` to exit):
 
     docker run -v $(pwd):/workDir -it hello-world /workDir/hello-musl
     Hi!
+
+    ./hello-musl 
+    Hi!
