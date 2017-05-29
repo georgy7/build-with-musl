@@ -2,7 +2,7 @@
 
 Two reasons.
 
-1. Build once, run everywhere (all Linux distros). Executables smaller, than with glibc.
+1. **Build once, run everywhere** (all Linux distros). Executables smaller, than with glibc.
 2. Musl has the very permissive MIT license.
 
 # Single C file
