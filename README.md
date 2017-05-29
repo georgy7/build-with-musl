@@ -2,8 +2,8 @@
 
 Two reasons.
 
-1. Portable (zero-dependency) executables, that are smaller, than ones with glibc.
-2. This is the good way to get rid of glibc, if you are a (L)GPL-paranoid like me. Musl has MIT license.
+1. Build once, run everywhere (all Linux distros). Executables smaller, than with glibc.
+2. Musl has the very permissive MIT license.
 
 # Single C file
 
