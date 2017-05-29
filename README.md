@@ -17,7 +17,7 @@ Two reasons.
 That's what I got on my 64-bit Ubuntu system:
 
 | Name                    | Size (KB) | Works on Tiny Core Linux?         |
-| ----------------------- | --------: |: ------------------------------- :|
+| ----------------------- | --------: | :-------------------------------: |
 | hello-clang             |     887.4 | YES                               |
 | hello-clang-dynamic     |       8.5 | panic: standard_init_linux.go:178 |
 | hello-gcc               |     887.3 | YES                               |
