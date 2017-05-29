@@ -24,6 +24,7 @@ That's what I got on my 64-bit Ubuntu system:
 | hello-gcc-dynamic       |       8.4 | panic: standard_init_linux.go:178 |
 | *hello-musl*            |   *120.5* | *YES*                             |
 
+So, how to get it.
 
 ## Step 1. Install Docker.
 
@@ -51,6 +52,6 @@ You can browse it now (print `exit` to exit):
 
 `$(pwd)` means the current host directory.
 
-## Step 4. Test on different OS distros.
+## Step 4. Test on other distros.
 
     docker run -v $(pwd):/workDir -it tatsushid/tinycore:8.0-x86_64 /workDir/hello-musl
