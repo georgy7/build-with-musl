@@ -3,7 +3,7 @@
 Two reasons.
 
 1. Portable (zero-dependency) executables, that are smaller, than ones with glibc.
-2. This is the good way to get rid of glibc, if you are a GPL-paranoid like me. Musl has MIT license.
+2. This is the good way to get rid of glibc, if you are a (L)GPL-paranoid like me. Musl has MIT license.
 
 # Single C file
 
