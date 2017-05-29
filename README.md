@@ -9,10 +9,10 @@ Two reasons.
 
 ## Regular build
 
-    gcc -std=c11 hello.c -o hello-gcc-dynamic
-    gcc -std=c11 hello.c --static -o hello-gcc
-    clang -std=c11 hello.c -o hello-clang-dynamic
     clang -std=c11 hello.c --static -o hello-clang
+    clang -std=c11 hello.c -o hello-clang-dynamic
+    gcc -std=c11 hello.c --static -o hello-gcc
+    gcc -std=c11 hello.c -o hello-gcc-dynamic
 
 That's what I got on my 64-bit Ubuntu system:
 
@@ -24,7 +24,7 @@ That's what I got on my 64-bit Ubuntu system:
 | hello-gcc-dynamic       |       8.4 | panic: standard_init_linux.go:178 |
 | *hello-musl*            |   *120.5* | *YES*                             |
 
-So, how to get it.
+1/7 by size! So, how to get it?
 
 ## Step 1. Install Docker.
 
