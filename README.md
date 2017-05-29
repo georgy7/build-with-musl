@@ -71,3 +71,6 @@ You can browse it now (print `exit` to exit):
 
     ./hello-musl 
     Hi!
+
+    file hello-musl
+    hello-musl: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped
