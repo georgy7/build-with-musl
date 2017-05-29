@@ -55,3 +55,16 @@ You can browse it now (print `exit` to exit):
 ## Step 4. Test on other distros.
 
     docker run -v $(pwd):/workDir -it tatsushid/tinycore:8.0-x86_64 /workDir/hello-musl
+    Hi!
+
+    docker run -v $(pwd):/workDir -it busybox:glibc /workDir/hello-musl
+    Hi!
+
+    docker run -v $(pwd):/workDir -it busybox:musl /workDir/hello-musl
+    Hi!
+
+    docker run -v $(pwd):/workDir -it busybox:uclibc /workDir/hello-musl
+    Hi!
+
+    docker run -v $(pwd):/workDir -it hello-world /workDir/hello-musl
+    Hi!
