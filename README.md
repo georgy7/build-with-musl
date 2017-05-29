@@ -23,8 +23,9 @@ That's what I got on my 64-bit Ubuntu system:
 | hello-gcc               |     887.3 | YES                               |
 | hello-gcc-dynamic       |       8.4 | panic: standard_init_linux.go:178 |
 | *hello-musl*            |   *120.5* | *YES*                             |
+| *hello-musl-release* (strip-all)   |    *17.2* | *YES*                             |
 
-1/7 by size! So, how to get it?
+1/7 by size (strip-all is a cheating, I suppose)! So, how to get it?
 
 ## Step 1. Install Docker.
 
@@ -49,6 +50,9 @@ You can browse it now (print `exit` to exit):
 ## Step 3. Build `hello.c`
 
     docker run -v $(pwd):/workDir -it clangmusl /workDir/build_single.sh hello.c hello-musl
+    
+    docker run -v $(pwd):/workDir -it clangmusl /workDir/build_single_release.sh \
+    hello.c hello-musl-release
 
 `$(pwd)` means the current host directory.
 
@@ -74,3 +78,26 @@ You can browse it now (print `exit` to exit):
 
     file hello-musl
     hello-musl: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped
+
+And now, the stripped version:
+
+    docker run -v $(pwd):/workDir -it tatsushid/tinycore:8.0-x86_64 /workDir/hello-musl-release
+    Hi!
+
+    docker run -v $(pwd):/workDir -it busybox:glibc /workDir/hello-musl-release
+    Hi!
+
+    docker run -v $(pwd):/workDir -it busybox:musl /workDir/hello-musl-release
+    Hi!
+
+    docker run -v $(pwd):/workDir -it busybox:uclibc /workDir/hello-musl-release
+    Hi!
+
+    docker run -v $(pwd):/workDir -it hello-world /workDir/hello-musl-release
+    Hi!
+
+    ./hello-musl-release
+    Hi!
+
+    file hello-musl-release
+    hello-musl-release: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
