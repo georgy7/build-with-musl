@@ -122,16 +122,19 @@ Build:
 ./nim_single.sh hello2.c hello2
 ```
 
-Test on other distros.
+Test it on various distros.
 
     docker run -v $(pwd):/workDir -it tatsushid/tinycore:8.0-x86_64 /workDir/nimcache/hello2
-
     docker run -v $(pwd):/workDir -it busybox:glibc /workDir/nimcache/hello2
-
     docker run -v $(pwd):/workDir -it busybox:musl /workDir/nimcache/hello2
-
     docker run -v $(pwd):/workDir -it busybox:uclibc /workDir/nimcache/hello2
-
     docker run -v $(pwd):/workDir -it hello-world /workDir/nimcache/hello2
-
     ./nimcache/hello2
+
+And size of this executable is
+
+    $ wc --bytes nimcache/hello2
+    26136 nimcache/hello2
+
+Also, there is [the great article](https://hookrace.net/blog/nim-binary-size/) about
+reducing binary size in Nim programming language.
