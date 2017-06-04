@@ -101,3 +101,37 @@ And now, the stripped version:
 
     file hello-musl-release
     hello-musl-release: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
+
+# Building single Nim file
+
+Install the other image
+
+```
+docker build --tag nimclangmusl NimClangMusl
+```
+
+Transpile to C:
+
+```
+nim c -d:release --opt:size --compileOnly hello2.nim
+```
+
+Build:
+
+```
+./nim_single.sh hello2.c hello2
+```
+
+Test on other distros.
+
+    docker run -v $(pwd):/workDir -it tatsushid/tinycore:8.0-x86_64 /workDir/nimcache/hello2
+
+    docker run -v $(pwd):/workDir -it busybox:glibc /workDir/nimcache/hello2
+
+    docker run -v $(pwd):/workDir -it busybox:musl /workDir/nimcache/hello2
+
+    docker run -v $(pwd):/workDir -it busybox:uclibc /workDir/nimcache/hello2
+
+    docker run -v $(pwd):/workDir -it hello-world /workDir/nimcache/hello2
+
+    ./nimcache/hello2
