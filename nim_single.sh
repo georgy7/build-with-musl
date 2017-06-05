@@ -1,11 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-# Written in 2017 by Georgy Ustinov.
 # License: СС0.
-# http://creativecommons.org/publicdomain/zero/1.0/
-#
-# This is a part of the Build with Musl tutorial.
+# This is a part of the "Build with Musl" tutorial.
 # https://github.com/georgy7/build-with-musl
 
 SOURCE=$1
