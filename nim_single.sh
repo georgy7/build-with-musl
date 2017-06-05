@@ -1,6 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 
+# License: СС0.
+# This is a part of the "Build with Musl" tutorial.
+# https://github.com/georgy7/build-with-musl
+
 SOURCE=$1
 RESULT=$2
 
