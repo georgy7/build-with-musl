@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -euo pipefail
 
 # License: СС0.
@@ -18,14 +18,17 @@ clang --verbose -std=c11 -Os -I/nim/lib stdlib_system.c -c -o stdlib_system.o
 # Uncomment the lines with stdlib_locks if you are using `--threads:on`.
 # You may need to compile and link more files here. It depends on your code.
 
-ld -o $RESULT \
-    $RESULT.o stdlib_system.o \
-    #stdlib_locks.o \
-    #stdlib_sharedlist.o \
-    /usr/lib/crt1.o \
-    /usr/lib/crti.o \
-    /usr/lib/crtn.o \
-    -static -L/usr/lib -L/lib \
+ldargs=( -o $RESULT
+    $RESULT.o stdlib_system.o
+    # stdlib_locks.o
+    # stdlib_sharedlist.o
+    /usr/lib/crt1.o
+    /usr/lib/crti.o
+    /usr/lib/crtn.o
+    -static -L/usr/lib -L/lib
     -lc
+)
+
+ld "${ldargs[@]}"
 
 strip -s $RESULT
