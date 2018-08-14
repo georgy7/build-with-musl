@@ -118,7 +118,6 @@ docker run --rm -v `pwd`:/usr/src/app -w /usr/src/app \
     nimlang/nim:0.18.0-alpine nim c \
     -d:release --opt:size --compileOnly hello2.nim
 
-# if root
 sudo chown -R $USER nimcache
 ```
 
