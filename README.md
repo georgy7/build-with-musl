@@ -143,8 +143,13 @@ Test it on various distros.
 
 And size of this executable is
 
-    $ wc --bytes nimcache/hello2
-    26136 nimcache/hello2
+```
+$ wc --bytes nimcache/hello2
+34280 nimcache/hello2
+
+$ md5sum nimcache/hello2
+50bea5fe693b57d602b674528b28c42e  nimcache/hello2
+```
 
 Also, there is [the great article](https://hookrace.net/blog/nim-binary-size/) about
 reducing binary size in Nim programming language.
