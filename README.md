@@ -111,13 +111,17 @@ docker pull nimlang/nim:0.18.0-alpine
 docker build --tag nimclangmusl NimClangMusl
 ```
 
-Transpile to C:
+Transpile to C. Optionally use the `--threads:on` option.
 
 ```
 docker run --rm -v `pwd`:/usr/src/app -w /usr/src/app \
     nimlang/nim:0.18.0-alpine nim c \
     -d:release --opt:size --compileOnly hello2.nim
 ```
+
+Copy both `nim_single.sh` and `nim_single_inner.sh` files to the folder with your source file.
+
+Modify `nim_single_inner.sh` if needed.
 
 Build:
 
