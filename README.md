@@ -122,7 +122,7 @@ docker run --rm -v `pwd`:/usr/src/app -w /usr/src/app \
 sudo chown -R $USER nimcache
 ```
 
-Copy both `nim_single.sh` and `nim_single_inner.sh` files to the folder with your source file.
+Copy both `nim_single.sh` and `nim_single_inner.sh` files to the folder with your source code.
 
 Modify `nim_single_inner.sh` if needed.
 
