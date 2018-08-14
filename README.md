@@ -104,16 +104,19 @@ And now, the stripped version:
 
 # Building single Nim file
 
-Install the other image
+Install the image for compiling and build the image for building:
 
 ```
+docker pull nimlang/nim:0.18.0-alpine
 docker build --tag nimclangmusl NimClangMusl
 ```
 
 Transpile to C:
 
 ```
-nim c -d:release --opt:size --compileOnly hello2.nim
+docker run --rm -v `pwd`:/usr/src/app -w /usr/src/app \
+    nimlang/nim:0.18.0-alpine nim c \
+    -d:release --opt:size --compileOnly hello2.nim
 ```
 
 Build:
