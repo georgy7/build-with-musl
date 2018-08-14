@@ -104,7 +104,7 @@ And now, the stripped version:
 
 # Building single Nim file
 
-Install the image for compiling and build the image for building:
+Install the image for compiling, build the other image for building:
 
 ```
 docker pull nimlang/nim:0.18.0-alpine
