@@ -10,7 +10,7 @@ RESULT=$2
 
 cd /workDir
 
-clang --verbose -std=c11 $1 -c -o $RESULT.o
+clang --verbose -std=c11 $SOURCE -c -o $RESULT.o
 
 echo -----------------
 
