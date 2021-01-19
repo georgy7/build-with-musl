@@ -5,6 +5,19 @@ Two reasons.
 1. **Build once, run everywhere** (all Linux distros). Executables smaller, than with glibc.
 2. Musl has the very permissive MIT license.
 
+--------
+
+You may like this collection of [single file libs](https://github.com/nothings/single_file_libs).
+
+# Cons
+
+I do not recommend this method for anything related to GUI.
+You [can not](https://lobste.rs/s/qx5zuo/how_create_portable_linux_binaries_even)
+statically link with X11, OpenGL, GTK anyway.
+
+For cross-platform desktop GUI application, IMO, it's much simpler to use JVM (Swing/JavaFX/JOGL/LWJGL),
+probably .Net, Python (Tkinter included). Or you can use a standard set of libraries with [Flatpak](https://docs.flatpak.org/en/latest/available-runtimes.html) or [Snap](https://snapcraft.io/docs/creating-a-snap). Both platforms allow you to distribute closed-source software.
+
 # Single C file
 
 ## Regular build
