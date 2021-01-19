@@ -10,7 +10,7 @@ RESULT=$2
 
 cd /workDir
 
-clang --verbose -std=c11 -Os -I/nim/lib $1 -c -o $RESULT.o
+clang --verbose -std=c11 -Os -I/nim/lib $SOURCE -c -o $RESULT.o
 clang --verbose -std=c11 -Os -I/nim/lib stdlib_system.c -c -o stdlib_system.o
 #clang --verbose -std=c11 -Os -I/nim/lib stdlib_locks.c -c -o stdlib_locks.o
 #clang --verbose -std=c11 -Os -I/nim/lib stdlib_sharedlist.c -c -o stdlib_sharedlist.o
