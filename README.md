@@ -7,7 +7,7 @@ Two reasons.
 
 --------
 
-You may like this collection of [single file libs](https://github.com/nothings/single_file_libs).
+You may like [the collection of single file libs](https://github.com/nothings/single_file_libs).
 
 # Cons
 
