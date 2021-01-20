@@ -125,13 +125,6 @@ docker pull nimlang/nim:1.4.2-alpine
 docker run --rm -v "`pwd`":/workDir -w /workDir \
     nimlang/nim:1.4.2-alpine nim c \
     -d:release --opt:size --passL:-static hello2.nim
-
-ls -l hello2
--rwxr-xr-x 1 root root 160352 янв 20 12:41 hello2
-
-strip hello2
-ls -l hello2
--rwxr-xr-x 1 me me 35000 янв 20 12:42 hello2
 ```
 
 Test it on various distros.
@@ -146,10 +139,17 @@ Test it on various distros.
 And size of this executable is
 
 ```
-$ wc --bytes hello2
-35000 hello2
+wc --bytes hello2
+160352 hello2
 
-$ md5sum hello2
+md5sum hello2
+46b35faf93ed264f21f2bd14fe943dbe  hello2
+
+strip hello2
+wc --bytes hello2
+35000
+
+md5sum hello2
 4a6d882ec8c84e9537e203089a7dc017  hello2
 
 file hello2
@@ -159,15 +159,15 @@ ldd hello2
 	statically linked
 ```
 
----------
+A bit more complex example.
 
 ```
 docker run --rm -v "`pwd`":/workDir -w /workDir \
     nimlang/nim:1.4.2-alpine nim c --threads:on \
     -d:release --opt:size --passL:-static race.nim
 
-ls -l race
--rwxr-xr-x 1 root root 275424 янв 20 13:36 race
+wc --bytes race
+275424 race
 
 file race
 race: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, with debug_info, not stripped
@@ -181,8 +181,8 @@ md5sum race
 
 strip race
 
-ls -l race
--rwxr-xr-x 1 me me 51456 янв 20 13:37 race
+wc --bytes race
+51456 race
 
 file race
 race: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, stripped
