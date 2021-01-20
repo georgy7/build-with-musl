@@ -3,3 +3,6 @@
 *.o
 *.kate-swp
 nimcache/
+
+hello2
+race

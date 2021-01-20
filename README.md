@@ -62,28 +62,28 @@ You can browse it now (print `exit` to exit):
 
 ## Step 3. Build `hello.c`
 
-    docker run --rm -v $(pwd):/workDir -it clangmusl /workDir/build_single.sh hello.c hello-musl
+    docker run --rm -v "$(pwd)":/workDir -it clangmusl /workDir/build_single.sh hello.c hello-musl
     
-    docker run --rm -v $(pwd):/workDir -it clangmusl /workDir/build_single_release.sh \
+    docker run --rm -v "$(pwd)":/workDir -it clangmusl /workDir/build_single_release.sh \
     hello.c hello-musl-release
 
-`$(pwd)` means the current host directory.
+"$(pwd)" means the current host directory.
 
 ## Step 4. Test on other distros.
 
-    docker run --rm -v $(pwd):/workDir -it tatsushid/tinycore:8.0-x86_64 /workDir/hello-musl
+    docker run --rm -v "$(pwd)":/workDir -it tatsushid/tinycore:8.0-x86_64 /workDir/hello-musl
     Hi!
 
-    docker run --rm -v $(pwd):/workDir -it busybox:glibc /workDir/hello-musl
+    docker run --rm -v "$(pwd)":/workDir -it busybox:glibc /workDir/hello-musl
     Hi!
 
-    docker run --rm -v $(pwd):/workDir -it busybox:musl /workDir/hello-musl
+    docker run --rm -v "$(pwd)":/workDir -it busybox:musl /workDir/hello-musl
     Hi!
 
-    docker run --rm -v $(pwd):/workDir -it busybox:uclibc /workDir/hello-musl
+    docker run --rm -v "$(pwd)":/workDir -it busybox:uclibc /workDir/hello-musl
     Hi!
 
-    docker run --rm -v $(pwd):/workDir -it hello-world /workDir/hello-musl
+    docker run --rm -v "$(pwd)":/workDir -it hello-world /workDir/hello-musl
     Hi!
 
     ./hello-musl 
@@ -94,19 +94,19 @@ You can browse it now (print `exit` to exit):
 
 And now, the stripped version:
 
-    docker run --rm -v $(pwd):/workDir -it tatsushid/tinycore:8.0-x86_64 /workDir/hello-musl-release
+    docker run --rm -v "$(pwd)":/workDir -it tatsushid/tinycore:8.0-x86_64 /workDir/hello-musl-release
     Hi!
 
-    docker run --rm -v $(pwd):/workDir -it busybox:glibc /workDir/hello-musl-release
+    docker run --rm -v "$(pwd)":/workDir -it busybox:glibc /workDir/hello-musl-release
     Hi!
 
-    docker run --rm -v $(pwd):/workDir -it busybox:musl /workDir/hello-musl-release
+    docker run --rm -v "$(pwd)":/workDir -it busybox:musl /workDir/hello-musl-release
     Hi!
 
-    docker run --rm -v $(pwd):/workDir -it busybox:uclibc /workDir/hello-musl-release
+    docker run --rm -v "$(pwd)":/workDir -it busybox:uclibc /workDir/hello-musl-release
     Hi!
 
-    docker run --rm -v $(pwd):/workDir -it hello-world /workDir/hello-musl-release
+    docker run --rm -v "$(pwd)":/workDir -it hello-world /workDir/hello-musl-release
     Hi!
 
     ./hello-musl-release
@@ -115,53 +115,85 @@ And now, the stripped version:
     file hello-musl-release
     hello-musl-release: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
 
-# Building single Nim file
-
-Install the image for compiling, build the other image for building:
+# Building Nim script
 
 ```
-docker pull nimlang/nim:0.18.0-alpine
-docker build --tag nimclangmusl NimClangMusl
+docker pull nimlang/nim:1.4.2-alpine
 ```
 
-Transpile to C. Optionally use the `--threads:on` option.
-
 ```
-docker run --rm -v `pwd`:/usr/src/app -w /usr/src/app \
-    nimlang/nim:0.18.0-alpine nim c \
-    -d:release --opt:size --compileOnly hello2.nim
+docker run --rm -v "`pwd`":/workDir -w /workDir \
+    nimlang/nim:1.4.2-alpine nim c \
+    -d:release --opt:size --passL:-static hello2.nim
 
-sudo chown -R $USER nimcache
-```
+ls -l hello2
+-rwxr-xr-x 1 root root 160352 янв 20 12:41 hello2
 
-Copy both `nim_single.sh` and `nim_single_inner.sh` files to the folder with your source code.
-
-Modify `nim_single_inner.sh` if needed.
-
-Build:
-
-```
-./nim_single.sh hello2.c hello2
+strip hello2
+ls -l hello2
+-rwxr-xr-x 1 me me 35000 янв 20 12:42 hello2
 ```
 
 Test it on various distros.
 
-    docker run --rm -v $(pwd):/workDir -it tatsushid/tinycore:8.0-x86_64 /workDir/nimcache/hello2
-    docker run --rm -v $(pwd):/workDir -it busybox:glibc /workDir/nimcache/hello2
-    docker run --rm -v $(pwd):/workDir -it busybox:musl /workDir/nimcache/hello2
-    docker run --rm -v $(pwd):/workDir -it busybox:uclibc /workDir/nimcache/hello2
-    docker run --rm -v $(pwd):/workDir -it hello-world /workDir/nimcache/hello2
-    ./nimcache/hello2
+    docker run --rm -v "$(pwd)":/workDir -it tatsushid/tinycore:8.0-x86_64 /workDir/hello2
+    docker run --rm -v "$(pwd)":/workDir -it busybox:glibc /workDir/hello2
+    docker run --rm -v "$(pwd)":/workDir -it busybox:musl /workDir/hello2
+    docker run --rm -v "$(pwd)":/workDir -it busybox:uclibc /workDir/hello2
+    docker run --rm -v "$(pwd)":/workDir -it hello-world /workDir/hello2
+    ./hello2
 
 And size of this executable is
 
 ```
-$ wc --bytes nimcache/hello2
-34280 nimcache/hello2
+$ wc --bytes hello2
+35000 hello2
 
-$ md5sum nimcache/hello2
-50bea5fe693b57d602b674528b28c42e  nimcache/hello2
+$ md5sum hello2
+4a6d882ec8c84e9537e203089a7dc017  hello2
+
+file hello2
+hello2: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, stripped
+
+ldd hello2
+	statically linked
 ```
 
+---------
+
+```
+docker run --rm -v "`pwd`":/workDir -w /workDir \
+    nimlang/nim:1.4.2-alpine nim c --threads:on \
+    -d:release --opt:size --passL:-static race.nim
+
+ls -l race
+-rwxr-xr-x 1 root root 269192 янв 20 13:06 race
+
+file race
+race: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, with debug_info, not stripped
+
+ldd race
+	statically linked
+
+md5sum race
+bac939b5a80e7536d8682310496851c2  race
+
+
+strip race
+
+ls -l race
+-rwxr-xr-x 1 me me 47360 янв 20 13:09 race
+
+file race
+race: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, stripped
+
+ldd race
+	statically linked
+
+md5sum race
+aa2b63adc5964fc39ebf33ac68510996  race
+```
+
+---------
 Also, there is [the great article](https://hookrace.net/blog/nim-binary-size/) about
 reducing binary size in Nim programming language.
