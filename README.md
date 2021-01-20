@@ -136,7 +136,7 @@ Test it on various distros.
     docker run --rm -v "$(pwd)":/workDir -it hello-world /workDir/hello2
     ./hello2
 
-And size of this executable is
+And the size of this executable is
 
 ```
 wc --bytes hello2
