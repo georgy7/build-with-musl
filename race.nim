@@ -1,14 +1,15 @@
-proc firstWorker() =
-  for i in 0 .. 10:
-    echo "first: ", i
+import race_utils
 
-proc secondWorker() =
-  for i in 0 .. 10:
-      echo "second: ", i
 
-var workers: array[2, Thread[void]]
+when isMainModule:
 
-createThread(workers[0], firstWorker)
-createThread(workers[1], secondWorker)
+  echo line
 
-joinThreads(workers)
+  var workers: array[2, Thread[string]]
+
+  createThread(workers[0], workerCode, "First")
+  createThread(workers[1], workerCode, "Second")
+
+  joinThreads(workers)
+
+  echo line

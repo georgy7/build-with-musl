@@ -167,7 +167,7 @@ docker run --rm -v "`pwd`":/workDir -w /workDir \
     -d:release --opt:size --passL:-static race.nim
 
 ls -l race
--rwxr-xr-x 1 root root 269192 янв 20 13:06 race
+-rwxr-xr-x 1 root root 275424 янв 20 13:36 race
 
 file race
 race: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, with debug_info, not stripped
@@ -176,13 +176,13 @@ ldd race
 	statically linked
 
 md5sum race
-bac939b5a80e7536d8682310496851c2  race
+1934b9430e1374788e725e5c07fba0f8  race
 
 
 strip race
 
 ls -l race
--rwxr-xr-x 1 me me 47360 янв 20 13:09 race
+-rwxr-xr-x 1 me me 51456 янв 20 13:37 race
 
 file race
 race: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, stripped
@@ -191,9 +191,13 @@ ldd race
 	statically linked
 
 md5sum race
-aa2b63adc5964fc39ebf33ac68510996  race
+22e90027056a63c20500c61d3a7e0674  race
 ```
 
----------
-Also, there is [the great article](https://hookrace.net/blog/nim-binary-size/) about
-reducing binary size in Nim programming language.
+```
+./race
+docker run --rm -v "$(pwd)":/workDir -it tatsushid/tinycore:8.0-x86_64 /workDir/race
+docker run --rm -v "$(pwd)":/workDir -it busybox:glibc /workDir/race
+docker run --rm -v "$(pwd)":/workDir -it busybox:musl /workDir/race
+docker run --rm -v "$(pwd)":/workDir -it busybox:uclibc /workDir/race
+```
