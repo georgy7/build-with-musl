@@ -9,11 +9,13 @@ Two reasons.
 
 You may like [the collection of single file libs](https://github.com/nothings/single_file_libs).
 
-# Cons
+# Why you shouldn't use it:
 
-I do not recommend this method for anything related to GUI.
 You [can not](https://lobste.rs/s/qx5zuo/how_create_portable_linux_binaries_even)
-statically link with X11, OpenGL, GTK anyway.
+statically link with X11, OpenGL, GTK anyway. That's why I do not recommend this method for anything related to GUI.
+
+You probably heard about [FFI](https://en.wikipedia.org/wiki/Foreign_function_interface). It's not an option for a single file portable app.
+It [requires](https://github.com/pfalcon/foreign-dlopen) building an interface layer ("helper" binary) on a user platform.
 
 For cross-platform desktop GUI application, IMO, it's much easier to use JVM (Swing/JOGL/LWJGL),
 probably .Net, Python (Tkinter included). Or you can use a standard set of libraries with [Flatpak](https://docs.flatpak.org/en/latest/available-runtimes.html) or [Snap](https://snapcraft.io/docs/creating-a-snap). Both platforms allow you to distribute closed-source software.
