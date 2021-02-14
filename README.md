@@ -20,6 +20,8 @@ It [requires](https://github.com/pfalcon/foreign-dlopen) building an interface l
 For cross-platform desktop GUI application, IMO, it's much easier to use JVM (Swing/JOGL/LWJGL),
 probably .Net, Python (Tkinter included). Or you can use a standard set of libraries with [Flatpak](https://docs.flatpak.org/en/latest/available-runtimes.html) or [Snap](https://snapcraft.io/docs/creating-a-snap). Both platforms allow you to distribute closed-source software.
 
+See also: [How to create near portable Linux binaries (C++)](https://blog.gibson.sh/2017/11/26/creating-portable-linux-binaries/#some-general-suggestions)
+
 # Single C file
 
 ## Regular build
@@ -203,3 +205,9 @@ docker run --rm -v "$(pwd)":/workDir -it busybox:glibc /workDir/race
 docker run --rm -v "$(pwd)":/workDir -it busybox:musl /workDir/race
 docker run --rm -v "$(pwd)":/workDir -it busybox:uclibc /workDir/race
 ```
+
+# Rust, Go
+
+Rust [supports musl out of the box](https://doc.rust-lang.org/edition-guide/rust-2018/platform-and-target-support/musl-support-for-fully-static-binaries.html).
+
+Go runtime does not depend on libc.
